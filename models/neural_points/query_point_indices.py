@@ -597,7 +597,7 @@ class lighting_fast_querier():
                     }
                 }
             }
-        """, no_extern_c=True)
+        """, options=["--std", "c++11"],no_extern_c=True)
         get_occ_vox = mod.get_function("get_occ_vox")
         near_vox_full = mod.get_function("near_vox_full")
         insert_vox_points = mod.get_function("insert_vox_points")
