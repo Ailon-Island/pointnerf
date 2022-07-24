@@ -23,6 +23,10 @@ var/
 wheels/
 pretrained/
 checkpoints/
+data_src/
+run/tmp/
+
+
 *.egg-info/
 .installed.cfg
 *.egg
