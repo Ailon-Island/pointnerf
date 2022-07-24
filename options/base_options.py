@@ -1,5 +1,8 @@
 import argparse
 import os
+
+import numpy as np
+
 from models import find_model_class_by_name
 from data import find_dataset_class_by_name
 import torch
@@ -172,9 +175,14 @@ class BaseOptions:
         self.print_and_save_options(opt)
 
         str_ids = opt.gpu_ids.split(',')
-        opt.gpu_ids = [
-            int(x) for x in opt.gpu_ids.split(',') if x.strip() and int(x) >= 0
-        ]
+        if (str_ids[0] == 'auto'):
+            os.system('nvidia-smi -q -d Memory |grep -A4 GPU|grep Free > gpu_info.txt')
+            memory_gpus = [int(x.split()[2]) for x in open('gpu_info.txt', 'r').readlines()]
+            opt.gpu_ids = np.sort(np.array(memory_gpus))[:int(str_ids[1])].tolist()
+        else:
+            opt.gpu_ids = [
+                int(x) for x in opt.gpu_ids.split(',') if x.strip() and int(x) >= 0
+            ]
         if len(opt.gpu_ids) > 0:
             torch.cuda.set_device(opt.gpu_ids[0])
 
