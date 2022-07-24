@@ -22,6 +22,7 @@ sdist/
 var/
 wheels/
 pretrained/
+checkpoints/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -121,3 +122,5 @@ viewer/ui_Viewer.py
 viewer/Viewer_rc.py
 viewer/breeze_rc.py
 viewer/testData
+
+
