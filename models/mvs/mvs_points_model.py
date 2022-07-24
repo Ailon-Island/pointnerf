@@ -247,8 +247,8 @@ class MvsPointsModel(nn.Module):
                 points_dirs = points_dirs.view(cam_xyz.shape[0], -1, 3) @ c2ws[:, cam_vid, :3, :3].transpose(1, 2)
                 if not pointdir_w:
                     points_dirs = points_dirs @ c2ws[:, self.args.ref_vid, :3, :3].transpose(1, 2) # in ref cam coord
-                print("points_dirs", points_dirs.shape)
-                points_dirs = points_dirs.view(cam_xyz.shape[0], cam_xyz.shape[1], -1) 
+                #print("points_dirs", points_dirs.shape)
+                points_dirs = points_dirs.view(cam_xyz.shape[0], cam_xyz.shape[1], -1)
             elif feat_str.startswith("point_conf"):
                 if photometric_confidence is None:
                     photometric_confidence = torch.ones_like(points_embedding[0][...,0:1])
