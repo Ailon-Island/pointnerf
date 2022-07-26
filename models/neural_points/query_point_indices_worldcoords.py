@@ -521,7 +521,7 @@ class lighting_fast_querier():
                     }
                 }
             }
-        """, no_extern_c=True)
+        """, options=["--std", "c++11"], no_extern_c=True)
         claim_occ = mod.get_function("claim_occ")
         map_coor2occ = mod.get_function("map_coor2occ")
         fill_occ2pnts = mod.get_function("fill_occ2pnts")
